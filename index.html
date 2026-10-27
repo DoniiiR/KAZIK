@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Казик Дяди Никона — мины и рулетка на местную валюту.">
+  <title>Казик Дяди Никона</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- ШАПКА -->
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand__logo" aria-hidden="true">♠</span>
+        <div class="brand__text">
+          <h1 class="brand__title">Казик Дяди Никона</h1>
+          <p class="brand__tagline">Курс: 1 говно&nbsp;=&nbsp;1&nbsp;₽. В долг не играет.</p>
+        </div>
+      </div>
+
+      <div class="wallet">
+        <span class="wallet__label">Баланс</span>
+        <span class="wallet__value"><span id="balance">1000</span>&nbsp;<i>говна</i></span>
+        <button type="button" class="btn btn--ghost btn--sm" id="reset-btn">Пополнить</button>
+      </div>
+    </header>
+
+    <!-- СТАВКА -->
+    <section class="bet-bar">
+      <label class="bet-bar__label" for="bet-amount">Ставка</label>
+      <div class="stepper">
+        <button type="button" class="stepper__btn" data-step="-1" aria-label="Уменьшить">−</button>
+        <input type="number" id="bet-amount" value="10" min="1" step="1" inputmode="numeric">
+        <button type="button" class="stepper__btn" data-step="1" aria-label="Увеличить">+</button>
+      </div>
+      <div class="chips">
+        <button type="button" class="chip" data-bet="10">10</button>
+        <button type="button" class="chip" data-bet="50">50</button>
+        <button type="button" class="chip" data-bet="100">100</button>
+        <button type="button" class="chip" data-bet="500">500</button>
+        <button type="button" class="chip" data-bet="half">½</button>
+        <button type="button" class="chip" data-bet="max">MAX</button>
+      </div>
+    </section>
+
+    <!-- ИГРЫ -->
+    <main class="games">
+
+      <!-- МИНЫ -->
+      <section class="card" aria-labelledby="mines-title">
+        <div class="card__head">
+          <h2 class="card__title" id="mines-title">Мины <span class="card__badge">5×5 · 5 мин</span></h2>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat__label">Множитель</span>
+              <span class="stat__value" id="mines-multiplier">1.00×</span>
+            </div>
+            <div class="stat">
+              <span class="stat__label">Выигрыш</span>
+              <span class="stat__value stat__value--green" id="mines-payout">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" id="mines-grid" aria-label="Поле мин"></div>
+
+        <div class="card__actions">
+          <button type="button" class="btn btn--gold btn--wide" id="mines-start">Начать игру</button>
+          <button type="button" class="btn btn--green btn--wide" id="mines-cashout" disabled>Забрать <span id="mines-cashout-value">1.00×</span></button>
+        </div>
+
+        <p class="status" id="mines-status">Ставь говно и нажимай «Начать игру».</p>
+      </section>
+
+      <!-- РУЛЕТКА -->
+      <section class="card" aria-labelledby="roulette-title">
+        <div class="card__head">
+          <h2 class="card__title" id="roulette-title">Рулетка <span class="card__badge">европейская</span></h2>
+          <div class="history" id="roulette-history" aria-label="История чисел"></div>
+        </div>
+
+        <div class="wheel-wrap" id="wheel-wrap">
+          <span class="wheel__pointer" aria-hidden="true"></span>
+          <div class="wheel" id="wheel">
+            <div class="wheel__plate" id="wheel-plate"></div>
+            <span class="wheel__hub" id="wheel-number">?</span>
+          </div>
+        </div>
+
+        <div class="roulette-bets">
+          <button type="button" class="btn bet bet--red" data-color="red">Красное&nbsp;<b>×2</b></button>
+          <button type="button" class="btn bet bet--black" data-color="black">Чёрное&nbsp;<b>×2</b></button>
+          <button type="button" class="btn bet bet--green" data-color="green">Зеро&nbsp;<b>×14</b></button>
+        </div>
+
+        <p class="status" id="roulette-status">Выберите цвет и крути говно.</p>
+      </section>
+
+    </main>
+
+    <footer class="footer">Говно не деньги в карман не положить.</footer>
+  </div>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
